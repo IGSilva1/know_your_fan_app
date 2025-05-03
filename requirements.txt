@@ -1,0 +1,7 @@
+flask
+flask_sqlalchemy
+flask_login
+opencv-python
+pytesseract
+requests
+beautifulsoup4

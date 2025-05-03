@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Know Your Fan</title>
+</head>
+<body>
+    <h1>Bem-vindo ao Know Your Fan</h1>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label>Upload de Documento (RG ou CPF):</label>
+        <input type="file" name="document" required>
+        <input type="submit" value="Validar Documento">
+    </form>
+
+    <form action="/social" method="POST">
+        <label>Usuário do Twitter:</label>
+        <input type="text" name="username" required>
+        <input type="submit" value="Analisar Perfil">
+    </form>
+
+    {% if ocr_result %}
+        <h3>Resultado do OCR:</h3>
+        <p><strong>Nome:</strong> {{ ocr_result.name }}</p>
+        <p><strong>CPF:</strong> {{ ocr_result.cpf }}</p>
+    {% endif %}
+
+    {% if twitter_data %}
+        <h3>Dados do Twitter:</h3>
+        <p><strong>Usuário:</strong> {{ twitter_data.username }}</p>
+        <p><strong>Seguidores:</strong> {{ twitter_data.followers }}</p>
+        <p><strong>Tweets Recentes:</strong></p>
+        <ul>
+            {% for tweet in twitter_data.recent_tweets %}
+                <li>{{ tweet }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
